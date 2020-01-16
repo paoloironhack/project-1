@@ -31,7 +31,8 @@ A strong password should **not** contain/be:
 - Not a keyboard pattern
 
 ## Workflow
-Outline the workflow you used in your project. What are the steps you went through?
+
+!!! INSERT LINK FOR WORKFLOW !!!
 
 ## Organization
 To organize my work I created a kanban board and split the work that need to be done into mulitple Tasks. 
