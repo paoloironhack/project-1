@@ -37,15 +37,15 @@ Outline the workflow you used in your project. What are the steps you went throu
 To organize my work I created a kanban board and split the work that need to be done into mulitple Tasks. 
 Link to Kanban board can be found bellow in the Links Section.
 
-Repository structure:
-
+#### Repository structure:
+```
 └── project-1
     ├── app
     │   ├── functions.py
     │   ├── history.txt (not uploaded to repository. Excluded via .gitignore)
     │   └── main.py
     └── README.md
-
+```
 functions.py - contains all the necessary functions to the execution of the program.
 main.py - main program file.
 history.txt - Contains the password history off all the generated passwords (MD5) in order to prevent double passwords.
