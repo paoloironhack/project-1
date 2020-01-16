@@ -46,8 +46,11 @@ Link to Kanban board can be found bellow in the Links Section.
     │   └── main.py
     └── README.md
 ```
+
 functions.py - contains all the necessary functions to the execution of the program.
+
 main.py - main program file.
+
 history.txt - Contains the password history off all the generated passwords (MD5) in order to prevent double passwords.
 
 ## Links
