@@ -1,5 +1,6 @@
 import string
 import random
+import hashlib
 
 
 def yesnoQuestion(q):
@@ -84,3 +85,21 @@ def generatePassword(config):
         char = random.choice(config[charset])
         password.append(char)
     return password
+
+
+def inHistory(pwd):
+    # check in history if password was generated before
+    f = open("history.txt", "r")
+    history = [p.replace("\n","") for p in f.readlines()]
+    f.close()
+    if pwd in history:
+        return True
+    else:
+        return False
+
+def savePassword(pwd):
+    f = open("history.txt", "a")
+    pwdSecure = hashlib.md5(pwd.encode()).hexdigest()
+    f.write(pwdSecure+"\n")
+    f.close()
+    return pwdSecure

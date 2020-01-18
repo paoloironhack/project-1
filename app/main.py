@@ -29,5 +29,14 @@ if mode and pwdOptions:
     print("Symbols:", pwdOptions['symbols'])
     print("Include similar characters:", pwdOptions['similar'])
     pwdConfig = fc.prepareOptions(pwdOptions)
-    password = fc.generatePassword(pwdConfig)
-    print("Your password is:", ''.join(password))
+    success = False
+    while not success:
+        password = ''.join(fc.generatePassword(pwdConfig))
+        print("Your password is:", password)
+        if fc.inHistory(password):
+            print("Password exists...we need a new one")
+        else:
+            success = True
+    print("Password was never generated. Let's save it.")
+    print(fc.savePassword(password))
+
