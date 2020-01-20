@@ -17,13 +17,14 @@ def yesnoQuestion(q):
 
 def presentOptions():
     options = {'length': False}
-    while options['length'] not in range(15, 129):
-        options['length'] = int(input("How long do you want your password to be?(Min:15 Max:128): "))
+    while options['length'] not in range(15, 87):
+        options['length'] = int(input("How long do you want your password to be?(Min:15 Max:86): "))
     options['alpha'] = yesnoQuestion("Include alpha characters (a-z)?")
     options['caseSensitive'] = yesnoQuestion("Case Sensitive (A-Z,a-z)?")
     options['num'] = yesnoQuestion("Include numerical characters (0-9)?")
     options['symbols'] = yesnoQuestion("Include symbols (!@#$%^&*())?")
-    if True not in options.values():
+
+    if True not in options.values() :
         print("You need to select at least one option. Let's try it again.")
         options.clear()
         presentOptions()
@@ -74,32 +75,55 @@ def generatePassword(config):
     password = []
     length = config['length']
     del config['length']
-    # get the first chars for each set of chars.
-    # This step is necessary to ensure that at least one char from each charset is used
+    # Check if can generate password with only unique chars
+    totalLen = 0
+    unique = True
     for c in config:
-        password.append(random.choice(config[c]))
-    # fill the remaing chars until desired character amount
+        totalLen += len(config[c])
+    # Get the first chars for each set of chars.
+    # This step is necessary to ensure that at least one char from each charset is used
+    if totalLen < length:
+        print("Warning: Impossible to generate password with only unique chars. Removing restrictions")
+
+        unique = False
+    for c in config:
+        char = random.choice(config[c])
+        password.append(char)
+        if unique: config[c].remove(char)
+    # Shuffle current list to prevent order of first chars to be the same all the time
+    random.shuffle(password)
+    # fill the remaining chars until desired character amount
     while len(password) < length:
         # select random item from dictionary
         charset = random.choice(list(config.keys()))
-        char = random.choice(config[charset])
-        password.append(char)
+        if len(config[charset]) == 0:
+            del config[charset]
+        else:
+            char = random.choice(config[charset])
+            # remove char to avoid repetition:
+            if unique: config[charset].remove(char)
+            password.append(char)
     return password
 
 
 def inHistory(pwd):
     # check in history if password was generated before
     f = open("history.txt", "r")
-    history = [p.replace("\n","") for p in f.readlines()]
+    history = [p.replace("\n", "") for p in f.readlines()]
     f.close()
-    if pwd in history:
+    pwdSecure = hashlib.md5(pwd.encode()).hexdigest()
+    if pwdSecure in history:
         return True
     else:
         return False
 
+
 def savePassword(pwd):
     f = open("history.txt", "a")
     pwdSecure = hashlib.md5(pwd.encode()).hexdigest()
-    f.write(pwdSecure+"\n")
-    f.close()
-    return pwdSecure
+    if f.write(pwdSecure+"\n"):
+        f.close()
+        return True
+    else:
+        f.close()
+        return False

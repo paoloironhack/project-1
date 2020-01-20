@@ -21,13 +21,13 @@ else:
     # this should not happen, EVER!!!
     raise ValueError("Incorrect option passed. This should not happen please investigate.")
 if mode and pwdOptions:
-    print("We have all the information needed, so let's start\nThe password will be generated with the following options:")
-    print("Password Lengh:", pwdOptions['length'])
-    print("Letters:", pwdOptions['alpha'])
-    print("Case sensitive:", pwdOptions['caseSensitive'])
-    print("Numbers:", pwdOptions['num'])
-    print("Symbols:", pwdOptions['symbols'])
-    print("Include similar characters:", pwdOptions['similar'])
+    print("Generating Password")
+    # print("Password Lengh:", pwdOptions['length'])
+    # print("Letters:", pwdOptions['alpha'])
+    # print("Case sensitive:", pwdOptions['caseSensitive'])
+    # print("Numbers:", pwdOptions['num'])
+    # print("Symbols:", pwdOptions['symbols'])
+    # print("Include similar characters:", pwdOptions['similar'])
     pwdConfig = fc.prepareOptions(pwdOptions)
     success = False
     while not success:
@@ -37,6 +37,7 @@ if mode and pwdOptions:
             print("Password exists...we need a new one")
         else:
             success = True
-    print("Password was never generated. Let's save it.")
-    print(fc.savePassword(password))
-
+    if fc.savePassword(password):
+        print("Password saved successfully")
+    else:
+        print("Failed to save password. Please check file permissions")
