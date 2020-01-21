@@ -22,7 +22,7 @@ def yesnoQuestion(q):
 def presentOptions():
     options = {'length': False}
     while options['length'] not in range(15, 87):
-        options['length'] = int(input("How long do you want your password to be?(Min:15 Max:86): "))
+        options['length'] = int(input("How long do you want your password to be?(Min:16 Max:86): "))
     options['alpha'] = yesnoQuestion("Include alpha characters (a-z)?")
     options['caseSensitive'] = yesnoQuestion("Case Sensitive (A-Z,a-z)?")
     options['num'] = yesnoQuestion("Include numerical characters (0-9)?")
@@ -87,12 +87,12 @@ def generatePassword(config):
     # Get the first chars for each set of chars.
     # This step is necessary to ensure that at least one char from each charset is used
     if totalLen < length:
-        print("Warning: Impossible to generate password with only unique chars. Removing restrictions")
+        print("WARNING: Impossible to generate password with only unique characters. Removing restriction of unique characters")
         unique = False
     for c in config:
         char = random.choice(config[c])
         password.append(char)
-        if unique: config[c].remove(char)
+        if unique: config[c].remove(char)  # remove character from list
     # Shuffle current list to prevent order of first chars to be the same all the time
     random.shuffle(password)
     # fill the remaining chars until desired character amount
@@ -104,7 +104,7 @@ def generatePassword(config):
         else:
             char = random.choice(config[charset])
             # remove char to avoid repetition:
-            if unique: config[charset].remove(char)
+            if unique: config[charset].remove(char)  # remove character from list
             password.append(char)
     return password
 
