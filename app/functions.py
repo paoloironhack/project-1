@@ -1,6 +1,10 @@
 import string
 import random
 import hashlib
+import os
+
+appFolder = os.path.dirname(os.path.realpath(__file__))
+historyFile = os.path.join(appFolder, "history.txt")
 
 
 def yesnoQuestion(q):
@@ -84,7 +88,6 @@ def generatePassword(config):
     # This step is necessary to ensure that at least one char from each charset is used
     if totalLen < length:
         print("Warning: Impossible to generate password with only unique chars. Removing restrictions")
-
         unique = False
     for c in config:
         char = random.choice(config[c])
@@ -108,7 +111,7 @@ def generatePassword(config):
 
 def inHistory(pwd):
     # check in history if password was generated before
-    f = open("history.txt", "r")
+    f = open(historyFile, "r")
     history = [p.replace("\n", "") for p in f.readlines()]
     f.close()
     pwdSecure = hashlib.md5(pwd.encode()).hexdigest()
@@ -119,7 +122,7 @@ def inHistory(pwd):
 
 
 def savePassword(pwd):
-    f = open("history.txt", "a")
+    f = open(historyFile, "a")
     pwdSecure = hashlib.md5(pwd.encode()).hexdigest()
     if f.write(pwdSecure+"\n"):
         f.close()
