@@ -13,7 +13,8 @@ Data Part time Bootcamp, Amsterdam, 2020
 - [Links](#links)
 
 ## Project Description
-This project will generate a Strong password following a set of pre-defined rules (or maybe user dependent???)
+This project will generate a Strong password following a set of pre-defined rules. The user has the ability to choose a 
+few options before generating the password. It's recommended that the default rules are chosen.  
 
 ## Rules
 A passowrd to be considered strong consists of a string of at least 15 Characters that meet the following conditions:
@@ -30,12 +31,9 @@ A strong password should **not** contain/be:
 - Be one of your previous passwords
 - Not a keyboard pattern
 
-## Workflow
-
-!!! INSERT LINK FOR WORKFLOW !!!
 
 ## Organization
-To organize my work I created a kanban board and split the work that need to be done into mulitple Tasks. 
+To organize my work I created a kanban board and split the work that need to be done into multiple tasks. 
 Link to Kanban board can be found bellow in the Links Section.
 
 #### Repository structure:
@@ -55,9 +53,14 @@ main.py - main program file.
 history.txt - Contains the password history off all the generated passwords (MD5) in order to prevent double passwords.
 
 ## Links
-Include links to your repository, slides and kanban board. Feel free to include any other links associated with your project.
 
 [Repository](https://github.com/pmoreira1/project-1)
-[Slides](https://slides.com/)
+
+[Presentation](https://drive.google.com/open?id=1HzsVX0M0xqazrUJc6gfNoYoIGj5f1-hdzmFbg9msXs4)
+
 [Trello](https://trello.com/b/QoLnW4cq/project-1-create-your-own-game)
+
+[Password Strength Meter](http://www.passwordmeter.com/)
+
+[How Strong is My Password](https://howsecureismypassword.net/)
 

@@ -13,7 +13,11 @@ print("Include similar characters:", defaultOptions['similar'])
 mode = False
 
 while mode not in [1, 2]:
-    mode = int(input("Please choose:\n1 - Default Options (recommended)\n2 - Custom Options\nYour choice: "))
+    try:
+        mode = int(input("Please choose:\n1 - Default Options (recommended)\n2 - Custom Options\nYour choice: "))
+        print(mode)
+    except:
+        print("Warning: That's not a valid option. Let's try again.")
 if mode == 1:
     pwdOptions = defaultOptions
 elif mode == 2:
