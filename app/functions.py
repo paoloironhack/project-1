@@ -23,7 +23,7 @@ def presentOptions():
     options = {'length': False}
     while options['length'] not in range(15, 87):
         try:
-            options['length'] = int(input("How long do you want your password to be?(Min:16 Max:86): "))
+            options['length'] = int(input("How long do you want your password to be?(Min:15 Max:86): "))
         except:
             print("Warning: That's not a valid option. Let's try again.")
     options['alpha'] = yesnoQuestion("Include alpha characters (a-z)?")
