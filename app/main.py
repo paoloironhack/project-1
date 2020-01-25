@@ -15,7 +15,6 @@ mode = False
 while mode not in [1, 2]:
     try:
         mode = int(input("Please choose:\n1 - Default Options (recommended)\n2 - Custom Options\nYour choice: "))
-        print(mode)
     except:
         print("Warning: That's not a valid option. Let's try again.")
 if mode == 1:
